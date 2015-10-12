@@ -17,4 +17,4 @@ for certain major modes. If you have any suggestions, add an issue.
 
 # License
 Standard MIT License, so do whatever. I'm not responsible for what happens
-after your copy and paste or git clone or whatever. :D
+after your copy and pasting shenanigans or git cloning or whatever....ing. :D
