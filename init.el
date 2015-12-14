@@ -1,3 +1,4 @@
+(package-initialize)
 ;;; Cask Package Management ;;;
 
 ;; Define my list of desired packages
@@ -116,12 +117,6 @@
 (projectile-global-mode)
 (setq projectile-completion-system 'helm)
 (helm-projectile-on)
-
-;;; Files Settings ;;;
-
-;; File Registers (Open with C-x r j <char>)
-(set-register ?i (cons 'file "~/.emacs.d/init.el"))
-(set-register ?n (cons 'file "~/.notes.org"))
 
 ;; Load all of my personal lisp files
 (add-to-list 'load-path "~/.emacs.d/lisp/")
