@@ -1,0 +1,7 @@
+# exclude everything except my config and lisp directory
+/*
+!/init.el
+!/README.md
+!/lisp
+!/Cask
+!/.gitignore
