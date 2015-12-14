@@ -1,47 +1,23 @@
-;; Package Management
+;;; Cask Package Management ;;;
+
 ;; Define my list of desired packages
-(setq package-list
-      '( web-mode emmet-mode yaml-mode markdown-mode js2-mode ac-js2
-                  smex ido-vertical-mode ido-ubiquitous git-gutter projectile
-                  magit helm-projectile monokai-theme))
+(require 'cask "/usr/local/share/emacs/site-lisp/cask/cask.el")
+(cask-initialize)
 
-;; Install my desired packages, if not present
-(when (>= emacs-major-version 24)
-  (require 'package)
-  ;; Get all of the package lists
-  (dolist (source '(("marmalade" . "http://marmalade-repo.org/packages/")
-                    ("gnu" . "http://elpa.gnu.org/packages/")
-                    ("melpa" . "http://melpa.org/packages/")))
-    (add-to-list 'package-archives source t))
-  
-  (package-initialize)
-  (unless package-archive-contents
-    (package-refresh-contents))
-  (dolist (package package-list)
-    (unless (package-installed-p package)
-      (package-install package))))
+;;; Emacs Look and Feel ;;;
 
-;; Load all of my personal lisp files
-(add-to-list 'load-path "~/.emacs.d/lisp/")
-(add-to-list 'load-path "~/.emacs.d/custom-init.el")
-
-;; Might as well get some cool packages and a theme
-(load "monokai-theme")
-;; Load Smex, which gives auto-completion within an M-x command
-(autoload 'smex "smex")
-
-;; How about some config settings?
-(put 'downcase-region 'disabled nil)
-(put 'upcase-region 'disabled nil)
 ;; Use a sweet font
 (add-to-list 'default-frame-alist '(font . "ProFontWindows-16"))
+;; Use a sweet theme
+(load "monokai-theme")
+
 ;; Turn off suto-save, the visible-bell and the startup message
 (setq backup-inhibited 't
       auto-save-default 'nil
       visible-bell 'nil
       inhibit-startup-message 't
       inhibit-startup-echo-area-message '"")
-(setq-default indent-tabs-mode nil)
+
 ;; Get rid of the distracting toolbar and scrollbar
 (tool-bar-mode -1)
 (toggle-scroll-bar -1)
@@ -49,21 +25,44 @@
 (global-linum-mode 1)
 ;; Add the time to the mode line
 (display-time-mode 1)
+
+;; How about some config settings?
+(put 'downcase-region 'disabled nil)
+(put 'upcase-region 'disabled nil)
+
+;; Add a bit more space and a vertical line to my line number section
+(setq linum-format "%4d \u2502 ")
+
+;;; Text Settings ;;;
+
+;; Turn off tabs.
+(setq-default indent-tabs-mode nil)
+
+;;; Package Settings ;;;
+
+;; Load Smex, which gives auto-completion within an M-x command
+(autoload 'smex "smex")
+(global-set-key (kbd "M-x") 'smex)
+
 ;; Turn on auto complete for code and for some various commands with ac and ido
 (ac-config-default)
+
+;; Turn on ido for wherever Helm isn't completing stuff.
 (ido-mode 1)
 (ido-everywhere 1)
 (flx-ido-mode 1)
+
 ;; disable ido faces to see flx highlights.
 (setq ido-enable-flex-matching t)
 (setq ido-use-faces nil)
+
+;; Make ido vertical.
 (ido-vertical-mode 1)
 (setq ido-vertical-define-keys 'C-n-and-C-p-only)
-(global-set-key (kbd "M-x") 'smex)
+
 ;; Make sure we have LF endings
 (setq-default buffer-file-coding-system 'utf-8-unix)
-;; Add a bit more space and a vertical line to my line number section
-(setq linum-format "%4d \u2502 ")
+
 ;; Add some automatic modes based on file extentions
 (add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
 (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
@@ -113,7 +112,18 @@
 
 (helm-mode 1)
 
+;; Helm Projectile
+(projectile-global-mode)
+(setq projectile-completion-system 'helm)
+(helm-projectile-on)
+
+;;; Files Settings ;;;
+
 ;; File Registers (Open with C-x r j <char>)
 (set-register ?i (cons 'file "~/.emacs.d/init.el"))
 (set-register ?n (cons 'file "~/.notes.org"))
+
+;; Load all of my personal lisp files
+(add-to-list 'load-path "~/.emacs.d/lisp/")
+(add-to-list 'load-path "~/.emacs.d/custom-init.el")
 
