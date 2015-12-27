@@ -17,13 +17,13 @@ for certain major modes. If you have any suggestions, add an issue.
 * Auto-modes for Python, Javascript, Coldfusion (don't ask...), HTML, CSS, LESS and Org files
 
 ## Installation
-First, clone this repo into your `~/.emacs.d` folder.
-Second, download ProFontWindows [here](http://www.fontsquirrel.com/fonts/profontwindows) or change the config to use a different font.
-Third, install Cask through `curl`.
+* First, clone this repo into your `~/.emacs.d` folder.
+* Second, download ProFontWindows [here](http://www.fontsquirrel.com/fonts/profontwindows) or change the config to use a different font.
+* Third, install Cask through `curl`.
 
 NOTE: If you install Cask through Homebrew for the Mac, then you will need to update how you require cask to where it is installed. The Cask documentation will cover this.
 
-Last, run `cd ~/.emacs.d/ && ~/.cask/bin/cask install`
+* Last, run `cd ~/.emacs.d/ && ~/.cask/bin/cask install`
 
 You should now be able to use my config for emacs!
 
