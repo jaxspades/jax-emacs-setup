@@ -1,8 +1,9 @@
 # jax-emacs-setup
 This is where I store all of my custom emacs configs and lisps.
 
-Some cool features:
+## Features
 
+* Package management through Cask!
 * A `custom-init.el` file, where you can store any sensitive configs that you
 don't want in a git repo. It's also great for setting up configs for different
 machines.
@@ -15,6 +16,16 @@ for certain major modes. If you have any suggestions, add an issue.
 * Helm, Projectile, Smex, Ido-Vertical and more for completion ease of use
 * Auto-modes for Python, Javascript, Coldfusion (don't ask...), HTML, CSS, LESS and Org files
 
-# License
+## Installation
+First, clone this repo into your `~/.emacs.d` folder.
+Second, install Cask through `curl`.
+
+NOTE: If you install Cask through Homebrew for the Mac, then you will need to update how you require cask to where it is installed. The Cask documentation will cover this.
+
+Last, run `cd ~/.emacs.d/ && ~/.cask/bin/cask install`
+
+You should now be able to use my config for emacs!
+
+## License
 Standard MIT License, so do whatever. I'm not responsible for what happens
 after your copy and pasting shenanigans or git cloning or whatever....ing. :D
