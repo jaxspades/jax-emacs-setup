@@ -18,7 +18,8 @@ for certain major modes. If you have any suggestions, add an issue.
 
 ## Installation
 First, clone this repo into your `~/.emacs.d` folder.
-Second, install Cask through `curl`.
+Second, download ProFontWindows [here](http://www.fontsquirrel.com/fonts/profontwindows) or change the config to use a different font.
+Third, install Cask through `curl`.
 
 NOTE: If you install Cask through Homebrew for the Mac, then you will need to update how you require cask to where it is installed. The Cask documentation will cover this.
 
