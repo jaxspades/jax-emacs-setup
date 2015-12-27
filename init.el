@@ -2,7 +2,7 @@
 ;;; Cask Package Management ;;;
 
 ;; Define my list of desired packages
-(require 'cask "/usr/local/share/emacs/site-lisp/cask/cask.el")
+(require 'cask "~/.cask/cask.el")
 (cask-initialize)
 
 ;;; Emacs Look and Feel ;;;
@@ -51,7 +51,6 @@
 ;; Turn on ido for wherever Helm isn't completing stuff.
 (ido-mode 1)
 (ido-everywhere 1)
-(flx-ido-mode 1)
 
 ;; disable ido faces to see flx highlights.
 (setq ido-enable-flex-matching t)
