@@ -119,5 +119,7 @@
 
 ;; Load all of my personal lisp files
 (add-to-list 'load-path "~/.emacs.d/lisp/")
-(load-file "~/.emacs.d/custom-init.el")
+
+(if (file-exists-p "~/.emacs.d/custom-init.el")
+  (load-file "~/.emacs.d/custom-init.el"))
 
