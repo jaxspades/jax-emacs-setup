@@ -39,6 +39,9 @@
 ;; Turn off tabs.
 (setq-default indent-tabs-mode nil)
 
+;; Delete Regions
+(delete-selection-mode 1)
+
 ;;; Package Settings ;;;
 
 ;; Load Smex, which gives auto-completion within an M-x command
