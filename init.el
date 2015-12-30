@@ -118,7 +118,8 @@
 (helm-projectile-on)
 
 ;; Expand Region
-(global-set-key (kbd "C-=") 'expand-region)
+(require 'expand-region)
+(global-set-key (kbd "C-=") 'er/expand-region)
 
 ;; Load all of my personal lisp files
 (add-to-list 'load-path "~/.emacs.d/lisp/")
