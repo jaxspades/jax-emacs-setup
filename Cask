@@ -6,6 +6,7 @@
 (depends-on "ac-js2")
 (depends-on "coffee-mode")
 (depends-on "emmet-mode")
+(depends-on "expand-region")
 (depends-on "git-gutter")
 (depends-on "helm")
 (depends-on "helm-dash")
