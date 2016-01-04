@@ -18,6 +18,7 @@
 (depends-on "magit")
 (depends-on "markdown-mode")
 (depends-on "monokai-theme")
+(depends-on "multiple-cursors")
 (depends-on "nodejs-repl")
 (depends-on "projectile")
 (depends-on "web-beautify")
