@@ -44,10 +44,6 @@
 
 ;;; Package Settings ;;;
 
-;; Load Smex, which gives auto-completion within an M-x command
-(autoload 'smex "smex")
-(global-set-key (kbd "M-x") 'smex)
-
 ;; Turn on auto complete for code and for some various commands with ac and ido
 (ac-config-default)
 
@@ -111,7 +107,8 @@
 (global-unset-key (kbd "C-x c"))
 (global-set-key (kbd "C-x C-f") 'helm-find-files)
 (global-set-key (kbd "C-x b") 'helm-buffers-list)
-
+;; Use Helm for emacs commands
+(global-set-key (kbd "M-x") 'helm-M-x)
 
 (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action)
 

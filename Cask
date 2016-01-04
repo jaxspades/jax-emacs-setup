@@ -20,7 +20,6 @@
 (depends-on "monokai-theme")
 (depends-on "nodejs-repl")
 (depends-on "projectile")
-(depends-on "smex")
 (depends-on "web-beautify")
 (depends-on "web-mode")
 (depends-on "yaml-mode")
