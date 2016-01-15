@@ -129,6 +129,9 @@
 (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
 (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
 
+;; Magit Settings
+(global-set-key (kbd "C-x g") 'magit-status)
+
 ;; Load all of my personal lisp files
 (add-to-list 'load-path "~/.emacs.d/lisp/")
 
