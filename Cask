@@ -16,7 +16,6 @@
 (depends-on "js2-mode")
 (depends-on "less-css-mode")
 (depends-on "magit")
-(depends-on "markdown-mode")
 (depends-on "monokai-theme")
 (depends-on "multiple-cursors")
 (depends-on "nodejs-repl")

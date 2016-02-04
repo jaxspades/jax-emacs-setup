@@ -24,8 +24,15 @@
 (toggle-scroll-bar -1)
 ;; Add some line numbers
 (global-linum-mode 1)
-;; Add the time to the mode line
+
+;; Add the time and file path to the mode line
 (display-time-mode 1)
+
+;; Display the file path for the buffer name
+;; TODO: Somehow only show from the point of the project root using projectile, if in a project...
+;; TODO: Replace my home path with ~
+;;(setq-default mode-line-buffer-identification
+;;            (cons (car mode-line-buffer-identification) '(buffer-file-name)))
 
 ;; How about some config settings?
 (put 'downcase-region 'disabled nil)
@@ -62,15 +69,13 @@
 ;; Make sure we have LF endings
 (setq-default buffer-file-coding-system 'utf-8-unix)
 
-;; Add some automatic modes based on file extentions
-(add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
-(add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
-(add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.cfc\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.css\\'" . css-mode))
-(add-to-list 'auto-mode-alist '("\\.less\\'" . less-css-mode))
-(add-to-list 'auto-mode-alist '("\\.cfm\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
+;; Markdown Mode
+(autoload 'markdown-mode "markdown-mode"
+  "Major mode for editing Markdown files" t)
+
+(setq markdown-command "/usr/local/bin/markdown")
+(setq markdown-css-dir "~/.emacs.d/custom files/markdown-mode/")
+(setq markdown-css-theme "github")
 
 ;; Projectile Settings
 (projectile-global-mode)
@@ -134,6 +139,18 @@
 ;; Magit Settings
 (global-set-key (kbd "C-x g") 'magit-status)
 (global-set-key (kbd "C-x M-g") 'magit-dispatch-popup)
+
+;; Add some automatic modes based on file extentions
+(add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
+(add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
+(add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.cfc\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.css\\'" . css-mode))
+(add-to-list 'auto-mode-alist '("\\.less\\'" . less-css-mode))
+(add-to-list 'auto-mode-alist '("\\.cfm\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
+(add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 
 ;; Load all of my personal lisp files
 (add-to-list 'load-path "~/.emacs.d/lisp/")
