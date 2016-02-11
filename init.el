@@ -10,7 +10,10 @@
 ;; Use a sweet font
 (add-to-list 'default-frame-alist '(font . "ProFontWindows-16"))
 ;; Use a sweet theme
-(load "monokai-theme")
+(load "gruvbox-theme")
+;;(load "monokai-theme")
+;;(load "spacegray-theme")
+;;(load "spolsky-theme")
 
 ;; Turn off suto-save, the visible-bell and the startup message
 (setq backup-inhibited 't
