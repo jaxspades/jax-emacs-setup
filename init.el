@@ -5,15 +5,17 @@
 (require 'cask "~/.cask/cask.el")
 (cask-initialize)
 
+;; Load all of my personal lisp files
+(add-to-list 'load-path "~/.emacs.d/lisp/")
+
 ;;; Emacs Look and Feel ;;;
 
 ;; Use a sweet font
 (add-to-list 'default-frame-alist '(font . "ProFontWindows-16"))
 ;; Use a sweet theme
 (load "gruvbox-theme")
-;;(load "monokai-theme")
-;;(load "spacegray-theme")
-;;(load "spolsky-theme")
+;; (load "monokai-theme")
+;; (load "spacegray-theme")
 
 ;; Turn off suto-save, the visible-bell and the startup message
 (setq backup-inhibited 't
@@ -154,9 +156,6 @@
 (add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
 (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
-
-;; Load all of my personal lisp files
-(add-to-list 'load-path "~/.emacs.d/lisp/")
 
 (if (file-exists-p "~/.emacs.d/custom-init.el")
   (load-file "~/.emacs.d/custom-init.el"))
