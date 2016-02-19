@@ -145,6 +145,10 @@
 (global-set-key (kbd "C-x g") 'magit-status)
 (global-set-key (kbd "C-x M-g") 'magit-dispatch-popup)
 
+;; EWW Settings
+(global-set-key (kbd "C-c e") 'eww)
+(setq browse-url-browser-function 'eww-browse-url)
+
 ;; Add some automatic modes based on file extentions
 (add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
 (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
