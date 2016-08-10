@@ -1,83 +1,25 @@
-(package-initialize)
-;;; Cask Package Management ;;;
+(require 'package)
 
-;; Define my list of desired packages
-(require 'cask "~/.cask/cask.el")
-(cask-initialize)
+(add-to-list 'package-archives
+             '("marmalade" . "http://marmalade-repo.org/packages/"))
+(add-to-list 'package-archives
+             '("melpa" . "http://melpa.milkbox.net/packages/"))
+
+(package-initialize)
 
 ;; Load all of my personal lisp files
 (add-to-list 'load-path "~/.emacs.d/lisp/")
 
-;;; Emacs Look and Feel ;;;
+;;; Emacs Settings ;;;
 
-;; Use a sweet font
-(add-to-list 'default-frame-alist '(font . "ProFontWindows-16"))
-;; Use a sweet theme
-(load "gruvbox-theme")
-;; (load "monokai-theme")
-;; (load "spacegray-theme")
+;; Standard settings ;;
+(if (file-exists-p "~/.emacs.d/settings/editor.el")
+  (load-file "~/.emacs.d/settings/editor.el"))
 
-;; Turn off suto-save, the visible-bell and the startup message
-(setq backup-inhibited 't
-      auto-save-default 'nil
-      visible-bell 'nil
-      inhibit-startup-message 't
-      inhibit-startup-echo-area-message '"")
+;; Custom settings - not in repo ;;
+(if (file-exists-p "~/.emacs.d/settings/custom-editor.el")
+  (load-file "~/.emacs.d/settings/custom-editor.el"))
 
-;; Get rid of the distracting toolbar and scrollbar
-(tool-bar-mode -1)
-(toggle-scroll-bar -1)
-;; Add some line numbers
-(global-linum-mode 1)
-
-;; Add the time and file path to the mode line
-(display-time-mode 1)
-
-;; highlight the current line
-;; but only if it is not the char terminal
-(add-hook 'after-change-major-mode-hook
-          '(lambda () (hl-line-mode (if (equal major-mode 'term-mode) 0 1))))
-
-;; Display the file path for the buffer name
-;; TODO: Somehow only show from the point of the project root using projectile, if in a project...
-;; TODO: Replace my home path with ~
-;;(setq-default mode-line-buffer-identification
-;;            (cons (car mode-line-buffer-identification) '(buffer-file-name)))
-
-;; How about some config settings?
-(put 'downcase-region 'disabled nil)
-(put 'upcase-region 'disabled nil)
-
-;; Add a bit more space and a vertical line to my line number section
-(setq linum-format "%4d \u2502 ")
-
-;;; Text Settings ;;;
-
-;; Turn off tabs.
-(setq-default indent-tabs-mode nil)
-
-;; Delete Regions
-(delete-selection-mode 1)
-
-;;; Package Settings ;;;
-
-;; Turn on auto complete for code and for some various commands with ac and ido
-(ac-config-default)
-
-;; Turn on ido for wherever Helm isn't completing stuff.
-(ido-mode 1)
-(ido-everywhere 1)
-
-;; disable ido faces to see flx highlights.
-(setq ido-enable-flex-matching t)
-(setq ido-use-faces nil)
-
-;; Make ido vertical.
-(ido-vertical-mode 1)
-(setq ido-vertical-define-keys 'C-n-and-C-p-only)
-
-;; Make sure we have LF endings
-(setq-default buffer-file-coding-system 'utf-8-unix)
 
 ;; Markdown Mode
 (autoload 'markdown-mode "markdown-mode"
@@ -166,7 +108,4 @@
 (add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
 (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
-
-(if (file-exists-p "~/.emacs.d/custom-init.el")
-  (load-file "~/.emacs.d/custom-init.el"))
 
