@@ -33,6 +33,11 @@
 ;; Add the time and file path to the mode line
 (display-time-mode 1)
 
+;; highlight the current line
+;; but only if it is not the char terminal
+(add-hook 'after-change-major-mode-hook
+          '(lambda () (hl-line-mode (if (equal major-mode 'term-mode) 0 1))))
+
 ;; Display the file path for the buffer name
 ;; TODO: Somehow only show from the point of the project root using projectile, if in a project...
 ;; TODO: Replace my home path with ~
@@ -156,6 +161,7 @@
 (add-to-list 'auto-mode-alist '("\\.cfc\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.css\\'" . css-mode))
 (add-to-list 'auto-mode-alist '("\\.less\\'" . less-css-mode))
+(add-to-list 'auto-mode-alist '("\\.scss\\'" . less-css-mode))
 (add-to-list 'auto-mode-alist '("\\.cfm\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
 (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
