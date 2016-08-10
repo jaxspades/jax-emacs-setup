@@ -2,8 +2,6 @@
 (add-to-list 'default-frame-alist '(font . "ProFontWindows-16"))
 ;; Use a sweet theme
 (load "gruvbox-theme")
-;; (load "monokai-theme")
-;; (load "spacegray-theme")
 
 ;; Turn off suto-save, the visible-bell and the startup message
 (setq backup-inhibited 't
@@ -66,3 +64,17 @@
 
 ;; Make sure we have LF endings
 (setq-default buffer-file-coding-system 'utf-8-unix)
+
+;; Add some automatic modes based on file extentions
+(add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
+(add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
+(add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.cfc\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.css\\'" . css-mode))
+(add-to-list 'auto-mode-alist '("\\.less\\'" . less-css-mode))
+(add-to-list 'auto-mode-alist '("\\.scss\\'" . less-css-mode))
+(add-to-list 'auto-mode-alist '("\\.cfm\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
+(add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
+

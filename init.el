@@ -4,8 +4,20 @@
              '("marmalade" . "http://marmalade-repo.org/packages/"))
 (add-to-list 'package-archives
              '("melpa" . "http://melpa.milkbox.net/packages/"))
-
+(add-to-list 'package-archives
+             '("gnu" . "http://elpa.gnu.org/packages/"))
 (package-initialize)
+
+;; Load Use Package and Dep. ;;
+
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
+
+(eval-when-compile
+  (require 'use-package))
+(require 'diminish)
+(require 'bind-key)
 
 ;; Load all of my personal lisp files
 (add-to-list 'load-path "~/.emacs.d/lisp/")
@@ -18,8 +30,90 @@
 
 ;; Custom settings - not in repo ;;
 (if (file-exists-p "~/.emacs.d/settings/custom-editor.el")
-  (load-file "~/.emacs.d/settings/custom-editor.el"))
+    (load-file "~/.emacs.d/settings/custom-editor.el"))
 
+;;; Package Settings ;;;
+(use-package ac-html
+             :ensure t)
+
+(use-package ac-html-bootstrap
+             :ensure t)
+
+(use-package ac-js2
+             :ensure t)
+
+(use-package coffee-mode
+             :ensure t)
+
+(use-package emmet-mode
+             :ensure t
+             :bind (("C-=" . er/expand-region)))
+
+(use-package eww
+             :bind ("C-c e" . eww)
+             :init (setq browse-url-browser-function 'eww-browse-url))
+
+(use-package expand-region
+             :ensure t)
+
+(use-package git-gutter
+             :ensure t)
+
+(use-package helm
+             :ensure t)
+
+(use-package helm-dash
+             :ensure t)
+
+(use-package helm-projectile
+             :ensure t
+             :config
+             (projectile-global-mode)
+             (setq projectile-completion-system 'helm)
+             (helm-projectile-on))
+
+(use-package ido-ubiquitous
+             :ensure t)
+
+(use-package ido-vertical-mode
+             :ensure t)
+
+(use-package js2-mode
+             :ensure t)
+
+(use-package less-css-mode
+             :ensure t)
+
+(use-package magit
+             :ensure t
+             :bind
+             ("C-x g" . magit-status)
+             ("C-x M-g" . magit-dispatch-popup))
+
+(use-package multiple-cursors
+             :ensure t
+             :bind
+             ("C->" . mc/mark-next-like-this)
+             ("C-<" . mc/mark-previous-like-this)
+             ("C-c C-<" . mc/mark-all-like-this))
+
+(use-package nodejs-repl
+             :ensure t)
+
+(use-package projectile
+             :ensure t
+             :config
+               (projectile-global-mode)
+               (setq projectile-indexing-method 'alien))
+
+(use-package web-beautify
+             :ensure t)
+
+(use-package web-mode
+             :ensure t)
+
+(use-package yaml-mode
+             :ensure t)
 
 ;; Markdown Mode
 (autoload 'markdown-mode "markdown-mode"
@@ -29,19 +123,6 @@
 (setq markdown-css-dir "~/.emacs.d/custom files/markdown-mode/")
 (setq markdown-css-theme "github")
 
-;; Projectile Settings
-(projectile-global-mode)
-(setq projectile-indexing-method 'alien)
-
-;; Web Beautify Settings
-(eval-after-load 'js2-mode
-  '(define-key js2-mode-map (kbd "C-c b") 'web-beautify-js))
-(eval-after-load 'json-mode
-  '(define-key json-mode-map (kbd "C-c b") 'web-beautify-js))
-(eval-after-load 'web-mode
-  '(define-key web-mode-map (kbd "C-c b") 'web-beautify-html))
-(eval-after-load 'css-mode
-  '(define-key css-mode-map (kbd "C-c b") 'web-beautify-css))
 
 ;; Ansi-Term Settings
 (add-hook 'term-mode-hook (lambda ()
@@ -73,39 +154,12 @@
 
 (helm-mode 1)
 
-;; Helm Projectile
-(projectile-global-mode)
-(setq projectile-completion-system 'helm)
-(helm-projectile-on)
-
-;; Expand Region
-(require 'expand-region)
-(global-set-key (kbd "C-=") 'er/expand-region)
-
-;; Multiple Cursors
-(require 'multiple-cursors)
-(global-set-key (kbd "C->") 'mc/mark-next-like-this)
-(global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
-(global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
-
-;; Magit Settings
-(global-set-key (kbd "C-x g") 'magit-status)
-(global-set-key (kbd "C-x M-g") 'magit-dispatch-popup)
-
-;; EWW Settings
-(global-set-key (kbd "C-c e") 'eww)
-(setq browse-url-browser-function 'eww-browse-url)
-
-;; Add some automatic modes based on file extentions
-(add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
-(add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
-(add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.cfc\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.css\\'" . css-mode))
-(add-to-list 'auto-mode-alist '("\\.less\\'" . less-css-mode))
-(add-to-list 'auto-mode-alist '("\\.scss\\'" . less-css-mode))
-(add-to-list 'auto-mode-alist '("\\.cfm\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
-(add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
-(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
+(eval-after-load 'js2-mode
+                      '(define-key js2-mode-map (kbd "C-c b") 'web-beautify-js))
+                    (eval-after-load 'json-mode
+                      '(define-key json-mode-map (kbd "C-c b") 'web-beautify-js))
+                    (eval-after-load 'web-mode
+                      '(define-key web-mode-map (kbd "C-c b") 'web-beautify-html))
+                    (eval-after-load 'css-mode
+                      '(define-key css-mode-map (kbd "C-c b") 'web-beautify-css))
 
