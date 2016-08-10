@@ -22,98 +22,103 @@
 ;; Load all of my personal lisp files
 (add-to-list 'load-path "~/.emacs.d/lisp/")
 
+;;; Package Settings ;;;
+(use-package ac)
+(use-package ac-html
+  :ensure t)
+
+(use-package ac-html-bootstrap
+  :ensure t)
+
+(use-package ac-js2
+  :ensure t)
+
+(use-package coffee-mode
+  :ensure t)
+
+(use-package emmet-mode
+  :ensure t
+  :bind (("C-=" . er/expand-region)))
+
+(use-package eww
+  :bind ("C-c e" . eww)
+  :init (setq browse-url-browser-function 'eww-browse-url))
+
+(use-package expand-region
+  :ensure t)
+
+(use-package git-gutter
+  :ensure t)
+
+(use-package gruvbox-theme
+  :ensure t)
+
+(use-package helm
+  :ensure t)
+
+(use-package helm-dash
+  :ensure t)
+
+(use-package helm-projectile
+  :ensure t
+  :config
+  (projectile-global-mode)
+  (setq projectile-completion-system 'helm)
+  (helm-projectile-on))
+
+(use-package ido-ubiquitous
+  :ensure t)
+
+(use-package ido-vertical-mode
+  :ensure t)
+
+(use-package js2-mode
+  :ensure t)
+
+(use-package less-css-mode
+  :ensure t)
+
+(use-package magit
+  :ensure t
+  :bind
+  ("C-x g" . magit-status)
+  ("C-x M-g" . magit-dispatch-popup))
+
+(use-package multiple-cursors
+  :ensure t
+  :bind
+  ("C->" . mc/mark-next-like-this)
+  ("C-<" . mc/mark-previous-like-this)
+  ("C-c C-<" . mc/mark-all-like-this))
+
+(use-package nodejs-repl
+  :ensure t)
+
+(use-package projectile
+  :ensure t
+  :config
+  (projectile-global-mode)
+  :init
+  (setq projectile-indexing-method 'alien))
+
+(use-package web-beautify
+  :ensure t)
+
+(use-package web-mode
+  :ensure t)
+
+(use-package yaml-mode
+  :ensure t)
+
 ;;; Emacs Settings ;;;
 
 ;; Standard settings ;;
 (if (file-exists-p "~/.emacs.d/settings/editor.el")
-  (load-file "~/.emacs.d/settings/editor.el"))
+    (load-file "~/.emacs.d/settings/editor.el"))
 
 ;; Custom settings - not in repo ;;
 (if (file-exists-p "~/.emacs.d/settings/custom-editor.el")
     (load-file "~/.emacs.d/settings/custom-editor.el"))
-
-;;; Package Settings ;;;
-(use-package ac-html
-             :ensure t)
-
-(use-package ac-html-bootstrap
-             :ensure t)
-
-(use-package ac-js2
-             :ensure t)
-
-(use-package coffee-mode
-             :ensure t)
-
-(use-package emmet-mode
-             :ensure t
-             :bind (("C-=" . er/expand-region)))
-
-(use-package eww
-             :bind ("C-c e" . eww)
-             :init (setq browse-url-browser-function 'eww-browse-url))
-
-(use-package expand-region
-             :ensure t)
-
-(use-package git-gutter
-             :ensure t)
-
-(use-package helm
-             :ensure t)
-
-(use-package helm-dash
-             :ensure t)
-
-(use-package helm-projectile
-             :ensure t
-             :config
-             (projectile-global-mode)
-             (setq projectile-completion-system 'helm)
-             (helm-projectile-on))
-
-(use-package ido-ubiquitous
-             :ensure t)
-
-(use-package ido-vertical-mode
-             :ensure t)
-
-(use-package js2-mode
-             :ensure t)
-
-(use-package less-css-mode
-             :ensure t)
-
-(use-package magit
-             :ensure t
-             :bind
-             ("C-x g" . magit-status)
-             ("C-x M-g" . magit-dispatch-popup))
-
-(use-package multiple-cursors
-             :ensure t
-             :bind
-             ("C->" . mc/mark-next-like-this)
-             ("C-<" . mc/mark-previous-like-this)
-             ("C-c C-<" . mc/mark-all-like-this))
-
-(use-package nodejs-repl
-             :ensure t)
-
-(use-package projectile
-             :ensure t
-             :config
-               (projectile-global-mode)
-               (setq projectile-indexing-method 'alien))
-
-(use-package web-beautify
-             :ensure t)
-
-(use-package web-mode
-             :ensure t)
-
-(use-package yaml-mode
-             :ensure t)
 
 ;; Markdown Mode
 (autoload 'markdown-mode "markdown-mode"
@@ -129,12 +134,12 @@
                             (define-key term-raw-map (kbd "C-y") 'term-paste)))
 
 (defun set-exec-path-from-shell-PATH ()
-    (let ((path-from-shell (shell-command-to-string "$SHELL -c 'echo $PATH'")))
-      (setenv "PATH" path-from-shell)
-      (setq exec-path (split-string path-from-shell path-separator))))
+  (let ((path-from-shell (shell-command-to-string "$SHELL -c 'echo $PATH'")))
+    (setenv "PATH" path-from-shell)
+    (setq exec-path (split-string path-from-shell path-separator))))
 (when window-system (set-exec-path-from-shell-PATH))
 (setenv "PATH" (concat (getenv "PATH") ":/usr/local/bin"))
-    (setq exec-path (append exec-path '("/usr/local/bin")))
+(setq exec-path (append exec-path '("/usr/local/bin")))
 
 ;; Helm Settings
 (require 'helm)
@@ -155,11 +160,11 @@
 (helm-mode 1)
 
 (eval-after-load 'js2-mode
-                      '(define-key js2-mode-map (kbd "C-c b") 'web-beautify-js))
-                    (eval-after-load 'json-mode
-                      '(define-key json-mode-map (kbd "C-c b") 'web-beautify-js))
-                    (eval-after-load 'web-mode
-                      '(define-key web-mode-map (kbd "C-c b") 'web-beautify-html))
-                    (eval-after-load 'css-mode
-                      '(define-key css-mode-map (kbd "C-c b") 'web-beautify-css))
+  '(define-key js2-mode-map (kbd "C-c b") 'web-beautify-js))
+(eval-after-load 'json-mode
+  '(define-key json-mode-map (kbd "C-c b") 'web-beautify-js))
+(eval-after-load 'web-mode
+  '(define-key web-mode-map (kbd "C-c b") 'web-beautify-html))
+(eval-after-load 'css-mode
+  '(define-key css-mode-map (kbd "C-c b") 'web-beautify-css))
 

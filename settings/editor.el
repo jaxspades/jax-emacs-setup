@@ -1,7 +1,5 @@
 ;; Use a sweet font
 (add-to-list 'default-frame-alist '(font . "ProFontWindows-16"))
-;; Use a sweet theme
-(load "gruvbox-theme")
 
 ;; Turn off suto-save, the visible-bell and the startup message
 (setq backup-inhibited 't
