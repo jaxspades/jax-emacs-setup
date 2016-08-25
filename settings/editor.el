@@ -1,5 +1,5 @@
 ;; Use a sweet font
-(add-to-list 'default-frame-alist '(font . "ProFontWindows-16"))
+(add-to-list 'default-frame-alist '(font . "ProFontWindows-14"))
 
 ;; Turn off suto-save, the visible-bell and the startup message
 (setq backup-inhibited 't
