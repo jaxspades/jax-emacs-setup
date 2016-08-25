@@ -56,12 +56,15 @@
 (use-package helm
   :ensure t)
 
+(use-package helm-ag
+  :ensure t)
+
 (use-package helm-dash
   :ensure t)
 
 (use-package helm-projectile
   :ensure t
-  :config
+  :init
   (projectile-global-mode)
   (setq projectile-completion-system 'helm)
   (helm-projectile-on))
@@ -100,6 +103,13 @@
   (projectile-global-mode)
   :init
   (setq projectile-indexing-method 'alien))
+
+;; (use-package tern
+;;   :init
+;;   (add-to-list 'load-path "~/Repositories/tern/emacs")
+;;   (autoload 'tern-mode "tern.el" nil t)
+;;   :config
+;;   (add-hook 'js2-mode (lambda () (tern-mode t)))
 
 (use-package web-beautify
   :ensure t)
