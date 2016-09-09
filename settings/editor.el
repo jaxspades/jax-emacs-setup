@@ -40,6 +40,13 @@
 ;; Turn off tabs.
 (setq-default indent-tabs-mode nil)
 
+;; Set HTML indentation to 2 spaces
+(setq web-mode-markup-indent-offset 2)
+(setq web-mode-indent-style 2)
+
+;; Highlight matching elements
+(setq web-mode-enable-current-element-highlight t)
+
 ;; Delete Regions
 (delete-selection-mode 1)
 
@@ -75,6 +82,7 @@
 (add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
 (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.xml\\'" . nxml-mode))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
