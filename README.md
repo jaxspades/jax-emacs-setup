@@ -26,6 +26,17 @@ setup and was easier to install. You shouldn't have to do anything special for i
 
 You should now be able to use my config for emacs!
 
+## Organization
+
+* lisp: Folder where you can place custom lisp files which will be loaded by init.el.
+* settings: Folder for `editor.el`, which are my 'standard' settings for the editor,
+and `custom-editor.el`, which is a great place to store settings for the editor that
+git will not override, so any customizations you want or environment specific settings
+should go here.
+* init.el: Main config file; if you want to protect yourself from git overriding your
+changes, then I suggest using `settings/custom-editor.el` or `lisp/*.el`. If you're
+forking this repo and won't be reintroducing changes later, then edit away. :D
+
 ## License
 Standard MIT License, so do whatever. I'm not responsible for what happens
 after your copy and pasting shenanigans or git cloning or whatever....ing. :D
