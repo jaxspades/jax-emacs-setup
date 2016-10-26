@@ -19,11 +19,10 @@ for certain major modes. If you have any suggestions, add an issue.
 ## Installation
 * First, clone this repo into your `~/.emacs.d` folder.
 * Second, download ProFontWindows [here](http://www.fontsquirrel.com/fonts/profontwindows) or change the config to use a different font.
-* Third, install Cask through `curl`.
 
-NOTE: If you install Cask through Homebrew for the Mac, then you will need to update how you require cask to where it is installed. The Cask documentation will cover this.
-
-* Last, run `cd ~/.emacs.d/ && ~/.cask/bin/cask install`
+### NOTE:
+This setup no longer uses Cask, but instead uses `use-package`. This has proven to work more effectively between different OSes for my
+setup and was easier to install. You shouldn't have to do anything special for installing it, unlike Cask.
 
 You should now be able to use my config for emacs!
 
