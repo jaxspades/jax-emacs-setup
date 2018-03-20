@@ -3,12 +3,13 @@ This is where I store all of my custom emacs configs and lisps.
 
 ## Features
 
-* Package management through Cask!
+* Package management through `use-package`
+* Evil Mode, because why should you always be good?
 * A `custom-init.el` file, where you can store any sensitive configs that you
 don't want in a git repo. It's also great for setting up configs for different
 machines.
 * A separate folder for any copy and pasted/created lisps in `lisps/`
-* Theme - Monokai with ProFontWindows. Looks great on any monitor!
+* Theme - Spolsky with ProFontWindows. Looks great on any monitor!
 * The ability to use a simple `C-y` in `ansi-term` for pasting
 * Pulls in your `PATH` in `ansi-term`
 * Line Numbers! On Everything! For now. Hopefully, I can get this to only happen
