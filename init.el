@@ -40,6 +40,17 @@
   :ensure t
   :bind (("C-=" . er/expand-region)))
 
+(use-package evil
+  :ensure t
+  :config (evil-mode 1))
+
+;; Move to settings.el
+(defvar my-leader-map (make-sparse-keymap)
+  "Keymap for \"leader key\" shortcuts.")
+
+(define-key evil-normal-state-map (kbd "SPC") my-leader-map)
+(define-key my-leader-map (kbd "SPC") 'helm-M-x)
+
 (use-package eww
   :bind ("C-c e" . eww)
   :init (setq browse-url-browser-function 'eww-browse-url))
@@ -127,15 +138,15 @@
     (load-file "~/.emacs.d/settings/editor.el"))
 
 ;; Custom settings - not in repo ;;
-(if (file-exists-p "~/.emacs.d/settings/custom-editor.el")
-    (load-file "~/.emacs.d/settings/custom-editor.el"))
+;;(if (file-exists-p "~/.emacs.d/settings/custom-editor.el")
+;;    (load-file "~/.emacs.d/settings/custom-editor.el"))
 
 ;; Markdown Mode
 (autoload 'markdown-mode "markdown-mode"
   "Major mode for editing Markdown files" t)
 
-(setq markdown-command "/usr/local/bin/markdown")
-(setq markdown-css-dir "~/.emacs.d/custom files/markdown-mode/")
+;;(setq markdown-command "/usr/local/bin/markdown")
+;;(setq markdown-css-dir "~/.emacs.d/custom files/markdown-mode/")
 (setq markdown-css-theme "github")
 
 
